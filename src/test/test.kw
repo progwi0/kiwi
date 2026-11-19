@@ -4,3 +4,9 @@ set hello 2
 msg Hello, World!
 mup hello 2
 out hello
+
+sys echo "Amogus sussy."
+
+def amogus msg Sigma
+
+run amogus
