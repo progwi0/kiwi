@@ -21,4 +21,7 @@ This language was created specifically for beginners—people who know nothing a
 
 My friends don’t know the first thing about programming or computers, and I had a brilliant idea: to create a programming language that anyone can understand - one that would allow even those with no background in computing to grasp the concepts and write code.
 
+<br />
+<br />
+
 This document will be actively expanded in the future, sorry.
