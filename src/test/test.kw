@@ -1,12 +1,12 @@
-:: Sigma
+:: This is commentary!
 
 set hello 2
 msg Hello, World!
 mup hello 2
 out hello
 
-sys echo "Amogus sussy."
+sys echo "This is system echo command in Kiwi!"
 
-def amogus msg Sigma
+def amogus msg This is def!
 
 run amogus

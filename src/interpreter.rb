@@ -19,6 +19,7 @@ ex = lambda do |line|
         name = opts[0]
         val = opts[1..].join(' ')
         vars[name] = val
+        ENV[name] = val
     when "msg"
         puts "#{opts.join(' ')}"
     when "out"
@@ -26,15 +27,19 @@ ex = lambda do |line|
     when "add"
         sus = vars[opts[0]].to_i + opts[1].to_i
         vars[opts[0]] = sus
+        ENV[opts[0]] = sus.to_s
     when "con"
         sus = vars[opts[0]].to_i - opts[1].to_i
         vars[opts[0]] = sus
+        ENV[opts[0]] = sus.to_s
     when "spl"
         sus = vars[opts[0]].to_i / opts[1].to_i
         vars[opts[0]] = sus
+        ENV[opts[0]] = sus.to_s
     when "mup"
         sus = vars[opts[0]].to_i * opts[1].to_i
         vars[opts[0]] = sus
+        ENV[opts[0]] = sus.to_s
     when "sys"
         system(opts.join(' '))
     when "def"
