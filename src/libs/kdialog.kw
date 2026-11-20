@@ -1,0 +1,3 @@
+def msgbox sys kdialog --msgbox "$a1"
+def error sys kdialog --error "$a1"
+def popup sys kdialog --title "$a1" --passivepopup "$a2" $a3

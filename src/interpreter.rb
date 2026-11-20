@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require_relative './checker'
+require 'shellwords'
 
 interpreteCode = ARGV[0]
 
@@ -12,7 +13,7 @@ ex = lambda do |line|
     line = line.strip
     next if line == nil or line.start_with?("::")
 
-    cmd, *opts = line.split
+    cmd, *opts = Shellwords.split(line)
 
     case cmd
     when "set"
@@ -41,24 +42,52 @@ ex = lambda do |line|
         vars[opts[0]] = sus
         ENV[opts[0]] = sus.to_s
     when "sys"
-        system(opts.join(' '))
+        system(line.sub(/^sys\s+/, ''))
     when "def"
         name = opts[0]
         val = opts[1..].join(' ')
-        defs[name] = val
+        defs[name] = line.sub(/^def\s+\S+\s+/, '')
     when "run"
         if defs.key?(opts[0])
+            # ex.call(defs[opts[0]])
+
+            opts[1..].each_with_index do |val, i|
+                vars["a#{i + 1}"] = val
+                ENV["a#{i + 1}"] = val
+            end
+
             ex.call(defs[opts[0]])
         else
             puts "No def like \033[31m#{defs[opts[0]]}\033[0m found, sorry."
+            exit 1
+        end
+    when "imp"
+        if File.exist?(opts[0])
+            File.readlines("#{opts[0]}", chomp: true).each do |sline|
+                ex.call(sline)
+            end
+        else
+            puts "No kiwi like \033[31m#{opts[0]}\033[0m found, sorry."
+            exit 1
         end
     when nil
         nil
     when "::"
         nil
     else
-        puts "No command like \033[31m#{cmd}\033[0m found, sorry."
-        exit 1
+        if defs.key?(cmd)
+            # ex.call(defs[opts[0]])
+
+            opts[0..].each_with_index do |val, i|
+                vars["a#{i + 1}"] = val
+                ENV["a#{i + 1}"] = val
+            end
+
+            ex.call(defs[cmd])
+        else
+            puts "No command like \033[31m#{cmd}\033[0m found, sorry."
+            exit 1
+        end
     end
 end
 
