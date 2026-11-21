@@ -1,4 +1,4 @@
-def fcrt sys touch $a1
-def frm sys rm -rf $a1
-def fmv sys mv $a1 $a2
-def fred sys cat $a1
+def fscrt sys touch $a1
+def fsrm sys rm -rf $a1
+def fsmv sys mv $a1 $a2
+def fsread sys cat $a1

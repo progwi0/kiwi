@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-require_relative './checker'
 require 'shellwords'
 
 interpreteCode = ARGV[0]

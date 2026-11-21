@@ -1,3 +1,8 @@
 def msgbox sys kdialog --msgbox "$a1"
 def error sys kdialog --error "$a1"
 def popup sys kdialog --title "$a1" --passivepopup "$a2" $a3
+def inputbox sys kdialog --inputbox "$a1" "$a2"
+def sorry sys kdialog --sorry "$a1"
+def yesno sys kdialog --yesno "$a1"
+def yesnocancel sys kdialog --yesnocancel "$a1"
+def textinputbox sys kdialog --textinputbox "$a1"
